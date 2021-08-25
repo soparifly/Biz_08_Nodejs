@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/form.css" />
+    <link rel="stylesheet" href="../public/css/main.css" />
+  </head>
+  <body>
+    <section>
+      <form>
+        <div>
+          <label for="">작성자</label
+          ><input name="b_writer" id="b_writer" value="<%- BBS.b_writer %>" />
+        </div>
+        <div>
+          <label for="">작성일자</label
+          ><input name="b_date" id="b_date" value="<%- BBS.b_date %>" />
+        </div>
+        <div>
+          <label for="">작성시각</label
+          ><input name="b_time" id="b_time" value="<%- BBS.b_time %>" />
+        </div>
+        <div>
+          <label for="">제목</label
+          ><input
+            name="b_subject"
+            id="b_subject"
+            value="<%- BBS.b_subject %>"
+          />
+        </div>
+        <div>
+          <label for="">내용</label
+          ><input
+            name="b_content"
+            id="b_content"
+            value="<%- BBS.b_content %>"
+          />
+        </div>
+        <div class="btn_box">
+          <button>저장</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
