@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <script>
+    document.addEventListener("DOMContetnLoaded", () => {
+      document.querySelector("#ga").addEventListener("click", () => {});
+    });
+    //document.querySelector("document")
+    $(document).ready(function () {
+      //Jqeury 문법이 적용되는 영역
+    });
+    //최신 Jqery 시작
+    $(function () {
+      $("#ga").on("click", function () {
+        alert($(this).text());
+      });
+      $("#na").on("click", (e) => {
+        alert($(e.target).text);
+      });
+      $("#da").on("click", function () {
+        $(this).fadeOut();
+      });
+    });
+
+    $(() => {
+      //JQeury코드가 작동되는 영역
+    });
+  </script>
+  <body>
+    <div id="ga">가</div>
+    <div id="na">가</div>
+    <div id="da">가</div>
+  </body>
+</html>
