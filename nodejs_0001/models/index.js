@@ -4,8 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
+
+//env에 development항목이지정된다
+//config에 전달됨
 const env = process.env.NODE_ENV || 'development';
+
+//config.json 파일에 설정된 속성중에서
+//development 속성만 추출하여 config 변수에 담기게 된다
 const config = require(__dirname + '/../config/config.json')[env];
+
+
 const db = {};
 
 let sequelize;
