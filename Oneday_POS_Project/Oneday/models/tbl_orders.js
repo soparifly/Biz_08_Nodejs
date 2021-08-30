@@ -23,8 +23,5 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false }
   );
 
-  orders.associate = (models) => {
-    orders.hasMany(models.tbl_product, { foreignKey: "p_code" });
-  };
   return orders;
 };

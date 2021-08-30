@@ -21,8 +21,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false }
   );
-  menu.associate = (models) => {
-    menu.belongsTo(models.tbl_orders);
-  };
   return menu;
 };
