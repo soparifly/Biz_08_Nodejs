@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const menu = sequelize.define(
-    "tbl_product",
+  return sequelize.define(
+    "tbl_products",
     {
       p_code: {
         type: DataTypes.INTEGER,
@@ -20,5 +20,4 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false }
   );
-  return menu;
 };

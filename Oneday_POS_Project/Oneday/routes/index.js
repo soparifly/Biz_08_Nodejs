@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
-const { tbl_orders } = require("../models/index");
+const { tbl_products } = require("../models/index");
 
 /* GET home page. */
 
 router.get("/", function (req, res, next) {
-  tbl_orders.findAndCountAll().then((result) => {
+  tbl_products.findAndCountAll().then((result) => {
     console.log(result);
-    res.render("index", { ORDERS: result.rows });
+    res.render("index", { MENU: result.rows });
   });
 });
 module.exports = router;
