@@ -9,7 +9,7 @@
         margin: 0;
         padding: 0;
       }
-      section{
+      section#section_main{
         position: relative;
       }
       .menu_order {
@@ -43,7 +43,7 @@
     </style>
   </head>
   <body>
-    <section>
+    <section id="main_section">
       <form>
         <% MENU.forEach((vo,index)=>{ %>
           <div class="menu_order" data-id="<%- vo.p_code %>">
@@ -53,11 +53,24 @@
         </section>
       </form>
       <script>
-        // 여기까지가 끝인가보오~
-        const table_num = ["1","2","3","4","5","6","7","8","9"];
-        for(let i=0; i<table_num.length;i++){
-          document.getElementsByClassName("modal").innerHTML="<div>table_num[i]</div>";
+        for(let i = 0; i< 12; i++){
+          div.table(data-table_id= i+1)!{i+1};
         }
+        document.addEventListener("DOMContentLoaded",()=>{
+          const main_section = document.querySelector("section.main");
+          if(main_section){
+            main_section.addEventListener("click",(e)=>{
+              const target = e.target;
+
+              index.pug의 table layout click 설정
+              if(target.tagName =="DIV" && target.className.include("table")){
+                const table_id = target.dataset.table_id;
+                alert(table_id +"가 선택됨");
+
+              }
+            })
+          }
+        })
       </script>
   </body>
 </html>
