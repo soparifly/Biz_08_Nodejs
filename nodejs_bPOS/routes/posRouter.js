@@ -32,58 +32,30 @@ router.get("/order/:table_id/input/:menu_id", (req, res) => {
       to_time: moment().format("HH:mm:ss"),
     };
     tbl_table_orders.create(table_orders).then((result) => {
-      res.json(result);
-      //   tbl_table_orders
-      //     .findAll({
-      //       where: { to_table_id: table_id },
-      //       include: [{ model: tbl_product, require: false }],
-      //     })
-      //     .then((order_list) => {
-      //       res.json({ table_id, order_list });
-      //     });
+      tbl_table_orders
+        .findAll({
+          where: { to_table_id: table_id },
+        })
+        .then((order_list) => {
+          res.json({ table_id, order_list });
+        });
     });
   });
+
+  //   const menu = {
+  //     table_id,
+  //     menu_id,
+  //     menu_name: "1000원김밥",
+  //     menu_price: 1000,
+  //   };
+  //  res.json(menu);
 });
 
-// table Layout에서 주문서화면으로 진입할때
-// 현재 table에 주문리스트가 있으면 화면에 출력하기 위한
-// Request 처리
 router.get("/getorder/:table_id", (req, res) => {
   const table_id = req.params.table_id;
 
   tbl_table_orders
-    .findAll({
-      where: { to_table_id: table_id },
-      include: [{ model: tbl_product, require: false }],
-    })
+    .findAll({ where: { to_table_id: table_id } })
     .then((result) => res.json(result));
-});
-
-router.get("/order/:order_seq/delete", (req, res) => {
-  const order_seq = req.params.order_seq;
-  tbl_table_orders
-    .destroy({
-      where: { to_seq: order_seq },
-    })
-    .then(() => {
-      res.send("OK");
-    })
-    .catch(() => {
-      res.send("FAIL");
-    });
-});
-router.get("/paycomplete/:table_id", (req, res) => {
-  const table_id = req.params.table_id;
-  tbl_table_orders
-    .update(
-      { to_pay: "P" }, //주문서에 결제가 완료된 표식으로 to_pay컬럼에 문자열 "P"업데이트
-      { where: { to_table_id: table_id } }
-    )
-    .then(() => {
-      res.send("OK");
-    })
-    .catch(() => {
-      res.send("FAIL");
-    });
 });
 module.exports = router;

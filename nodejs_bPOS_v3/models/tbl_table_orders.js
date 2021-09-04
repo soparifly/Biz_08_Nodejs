@@ -20,5 +20,14 @@ module.exports = (seq, Type) => {
     to_pay: { type: Type.STRING(1) }, // 결제 여부
     to_pay_qty: { type: Type.STRING(10) }, // 결제 종류(현금, 카드)
   });
+
+  // belongsTo() 설정에서 foreignKey를 설정하는 것은
+  // 간혹 JOIN을 수행할때 엉뚱한 칼럼으로 연결되는 것을 방지하는
+  // 명시적인 코딩
+  // 여기에서 설정된 foreignKey는 참조설정이라기 보다는
+  // 명시적인 설정이고 자기 자신의 칼럼을 지정한다
+  table_orders.associate = (models) => {
+    table_orders.belongsTo(models.tbl_product, { foreignKey: "to_pcode" });
+  };
   return table_orders;
 };
