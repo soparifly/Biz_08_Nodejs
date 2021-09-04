@@ -3,15 +3,19 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var app = express();
+
+const sequelize = require("./models/index");
+sequelize.sequelize.sync().then((result) => {
+  console.log("Host:", result.options.host);
+  console.log("database", result.options.database);
+});
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-// router 컨트롤러라는 의미로 해석됨 . require
-const ordersRouter = require("./routes/ordersRouter");
 
-const sequelize = require("./models/index").sequelize;
-sequelize.sync();
+//router를 import하기
+const posRouter = require("./routes/posRouter");
+
+var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -24,9 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-//요청자가 localhost:3000/kimbab으로 주소를 넘겨주면 ordersRouter에서 처리한다는 내용
-app.use("/kimbab", ordersRouter);
+app.use("/pos", posRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
