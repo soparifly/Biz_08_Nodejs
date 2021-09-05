@@ -1,0 +1,34 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Michroma|Libre+Baskerville:400,700|Cinzel+Decorative:400,700,900|Poppins:300,400,700&display=swa')
+		link(rel='stylesheet', href=
+		'https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
+		link(rel='stylesheet', href='/css/header.css')
+	body
+	.wrapper
+	header
+		a(href='index.pug' onclick='return false')
+			.logo
+		ul.menu
+		li.constellation
+			a(href='#constellation' onclick='return false') 별자리
+		li.solarsytem
+			a(href='#solarsytem' onclick='return false')
+			| 태양계
+			li.observatory
+				a(href='#observatory' onclick='return false')
+				| 천문대
+				li.gallery
+					a(href='#gallery' onclick='return false')
+					| 갤러리
+					li.calendar
+						a(href='#calendar' onclick='return false')
+						| 캘린더
+						li.today
+							a(href='#today' onclick='return false')
+							| 오늘의사진
+							li.quiz
+								a(href='#quiz' onclick='return false') 퀴즈
+
+		block content

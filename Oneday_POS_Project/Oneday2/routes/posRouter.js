@@ -22,10 +22,27 @@ router.get("/order/:table_id", async (req, res) => {
  */
 // let menu_list = [];
 
-router.get("/order/:table_id/input/:menu_id", (req, res) => {
+router.get("/order/:table_id/input/:menu_id", async (req, res) => {
   const table_id = req.params.table_id;
   const menu_id = req.params.menu_id;
-  tbl_product.findByPk(menu_id).then((product) => {
+
+  const menu = await tbl_product.findByPk(menu_id);
+
+  const table_order = await tbl_table_orders.findOne({
+    where: { to_table_id: table_id, to_pcode: menu_id, to_pay: null },
+  });
+  if (table_order) {
+    const order_qty = table_order.dataValues.to_qty;
+    const order_seq = table_order.dataValues.to_seq;
+
+    const result = await table_order.update(
+      {
+        to_qty: order_qty + 1,
+      },
+      { where: { to_seq: order_seq } }
+    );
+    res.json(result);
+  } else {
     const table_orders = {
       to_table_id: table_id,
       to_pcode: menu_id,
@@ -34,17 +51,19 @@ router.get("/order/:table_id/input/:menu_id", (req, res) => {
       to_date: moment().format("YYYY[-]MM[-]DD"),
       to_time: moment().format("HH:mm:ss"),
     };
-    tbl_table_orders.create(table_orders).then((result) => {
-      //   tbl_table_orders
-      //     .findAll({
-      //       where: { to_table_id: table_id },
-      //     })
-      //     .then((order_list) => {
-      //       res.json({ table_id, order_list });
-      //     });
-      res.json(result);
-    });
-  });
+    const result = tbl_table_orders.create(table_order_menu);
+    res.json(result);
+  }
+});
+router.get("/order/:table_id/getlist", (req, res) => {
+  const table_id = req.params.table_id;
+
+  tbl_table_orders
+    .findAll({
+      where: { to_table_id: table_id, to_pay: null },
+      include: [{ model: tbl_product, require: false }],
+    })
+    .then((result) => res.json(result));
 });
 
 router.get("/getorder/:table_id", (req, res) => {

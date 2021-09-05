@@ -36,8 +36,8 @@
 
 ### mysql 연동을 위하여 dependency 설치
 
-- npm install sequelize
-- npm install mysql2
+npm install sequelize
+npm install mysql2
 
 ### sequelize-cli를 이용한 초기화
 

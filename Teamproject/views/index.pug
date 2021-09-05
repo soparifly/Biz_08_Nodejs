@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= Gallery
-  p Welcome to #{title}
+	section#main 
+		form#fileUp(action="upload" method="post" enctype="multipart/form-data")
+			input#userfile(type="file", name="userfile")
+			input.image_send(type="text", name="g_title")
+			input.image_send(type="text", name="g_writer")
+			button.btn_gallery_input(type="submit") 보내기 			
+			each vo,index in GALLERY 
+				img(src="/images/"+vo.g_filename)
+	script(src="/js/gallery_view.js") 
