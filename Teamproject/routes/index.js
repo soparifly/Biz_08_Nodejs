@@ -46,9 +46,8 @@ router.post("/upload", upload.single("userfile"), (req, res) => {
     g_fileoriginalname: originalname,
   };
   console.log(gallery_insert);
-  tbl_gallery.create(gallery_insert);
+  tbl_gallery.create(gallery_insert).then(res.redirect("/upload"));
 });
-// res.redirect("/");
 // tbl_gallery.create(gallery_instert);
 // res.json(result);
 
