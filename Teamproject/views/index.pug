@@ -1,12 +1,18 @@
 extends layout
 
 block content
-	section#main 
-		form#fileUp(action="upload" method="post" enctype="multipart/form-data")
-			input#userfile(type="file", name="userfile")
-			input.image_send(type="text", name="g_title")
-			input.image_send(type="text", name="g_writer")
-			button.btn_gallery_input(type="submit") 보내기 			
+	link(rel="stylesheet", href="/css/main.css")
+	section#main_section
+		button#btn_insert(type='submit') 올리기
 			each vo,index in GALLERY 
 				img(src="/images/"+vo.g_filename)
-	script(src="/js/gallery_view.js") 
+			#modal_overlay
+				#modal
+					.title insert
+					.close X
+					form#fileUp(action='/upload', method='POST', enctype='multipart/form-date')
+							input#userfile(type='file', name='userfile')
+							input.image_send(name='g_title' placeholder="제목")
+							input.image_send(name='g_writer' placeholder="작성자")
+							button#btn_image_send(type='submit') 완료
+	script(src='/js/gallery_view.js')
