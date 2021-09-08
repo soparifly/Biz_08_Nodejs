@@ -5,8 +5,19 @@ html
 		link(rel='stylesheet', href=
 		'https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
 		link(rel='stylesheet', href='/css/header.css')
+		link(rel="stylesheet", href="/css/main.css")
 	body
-	.wrapper
+	section#main_section
+				each vo,index in GALLERY 
+					img(src="/images/"+vo.g_filename)
+					button#btn_insert 올리기
+				#modal_overlay
+					#modal
+						form#fileUp(action='/upload', method='POST' enctype="multipart/form-data")
+								input#userfile(type='file', name="userfile")
+								input.image_send(name='g_title' placeholder="제목")
+								input.image_send(name='g_writer' placeholder="작성자")
+								button(type='submit') 완료
 	header
 		a(href='index.pug' onclick='return false')
 			.logo

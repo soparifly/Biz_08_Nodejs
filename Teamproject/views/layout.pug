@@ -1,7 +1,11 @@
-body
-		header 
-			h1 갤러리
-		
-			block content
-
-		footer 	
+html
+	head
+		title My Site - #{title}
+		block scripts
+		script(src='/js/gallery_view.js')
+	body
+		block header
+		block content
+		block foot
+		#footer
+			p some footer content

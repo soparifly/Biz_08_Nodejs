@@ -1,8 +1,50 @@
-section#main_section {
-  width: 100%;
-  height: 100%;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-div#modal_overlay {
+body {
+  word-break: keep-all;
+  overflow-x: hidden;
+  width: 100%;
+  font-family: "NanumSquare", sans-serif;
+  font-size: 1.8vh;
+  line-height: 1.5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: url(../images/background.png) no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+section#main_section {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+div#img_list {
+  display: inline-flex;
+  position: absolute;
+  top: 100px;
+  margin: 0 auto;
+  flex: 1;
+  width: 80vw;
+  height: 50vh;
+  overflow-y: hidden;
+  overflow-x: auto;
+  float: left;
+  border-radius: 10px;
+}
+button#btn_insert {
+  position: absolute;
+  top: 20px;
+  width: 100px;
+  height: 30px;
+  list-style: none;
+}
+#modal {
   display: none;
   width: 100%;
   height: 100%;
@@ -19,8 +61,7 @@ div#modal_overlay {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
-div#modal {
-  display: none;
+#modal .modal_window {
   background: rgba(128, 117, 201, 0.7);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(13.5px);
@@ -38,4 +79,43 @@ form#fileUp {
   padding: 0px 10px;
   text-shadow: 1px 1px 2px gray;
   color: white;
+}
+.filebox {
+  position: relative;
+  width: 40%;
+  height: 40%;
+}
+.filebox label {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  padding: 2em 3em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: rgb(101, 16, 237);
+  cursor: pointer;
+  border: 1px solid rgb(186, 159, 230);
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px gray;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.filebox label:hover {
+  cursor: pointer;
+  background-color: rgb(223, 217, 233);
+}
+.filebox label:active {
+  background-color: rgb(186, 159, 230);
+}
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

@@ -3,16 +3,17 @@ extends layout
 block content
 	link(rel="stylesheet", href="/css/main.css")
 	section#main_section
-		button#btn_insert(type='submit') 올리기
-			each vo,index in GALLERY 
-				img(src="/images/"+vo.g_filename)
-			#modal_overlay
-				#modal
-					.title insert
-					.close X
-					form#fileUp(action='/upload', method='POST', enctype='multipart/form-date')
-							input#userfile(type='file', name='userfile')
-							input.image_send(name='g_title' placeholder="제목")
-							input.image_send(name='g_writer' placeholder="작성자")
-							button#btn_image_send(type='submit') 완료
-	script(src='/js/gallery_view.js')
+				button#btn_insert 올리기
+				#img_list
+					each vo,index in GALLERY 
+						img(src="/images/"+vo.g_filename)
+				#modal.modal_overlay
+					.modal_window
+						form#fileUp(action='/upload', method='POST' enctype="multipart/form-data")
+								.filebox
+									label(for="userfile") IMG
+									input#userfile(type='file', name="userfile")
+								input.image_send(name='g_title' placeholder="제목")
+								input.image_send(name='g_writer' placeholder="작성자")
+								button(type='submit') 완료
+

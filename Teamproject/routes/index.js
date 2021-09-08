@@ -26,7 +26,6 @@ const upload = multer({ storage: _storage });
 /* GET home page. */
 router.get("/", (req, res, next) => {
   tbl_gallery.findAll().then((result) => {
-    console.log(result);
     res.render("index", { GALLERY: result });
   });
 });
@@ -45,8 +44,7 @@ router.post("/upload", upload.single("userfile"), (req, res) => {
     g_filename: filename,
     g_fileoriginalname: originalname,
   };
-  console.log(gallery_insert);
-  tbl_gallery.create(gallery_insert).then(res.redirect("/upload"));
+  tbl_gallery.create(gallery_insert).then(res.redirect("/"));
 });
 // tbl_gallery.create(gallery_instert);
 // res.json(result);
