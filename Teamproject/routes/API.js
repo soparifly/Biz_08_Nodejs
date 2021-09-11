@@ -1,8 +1,8 @@
-var request = require("request");
+const request = require("request");
 
-var url =
+const url =
   "http://apis.data.go.kr/B090041/openapi/service/AstroEventInfoService";
-var queryParams =
+const queryParams =
   "?" +
   encodeURIComponent("ServiceKey") +
   "=VIgbL54Jr18sQamsUp0hkYlmdtwuLe0dlNvpM68Fz3DwWCZOG%2BqzkOQeLCnqzm0Ui6YqKPVe7wXr2o%2FhyZn6JQ%3D%3D";
