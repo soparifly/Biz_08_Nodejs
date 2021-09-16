@@ -2,7 +2,6 @@ var express = require("express");
 const path = require("path");
 const moment = require("moment");
 var router = express.Router();
-const { tbl_gallery } = require("../models/index");
 const multer = require("multer");
 const _storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -23,9 +22,11 @@ const upload = multer({ storage: _storage });
  */
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  tbl_gallery.findAll().then((result) => {
-    res.render("index", { GALLERY: result });
-  });
+  db.collection("test")
+    .findAll()
+    .then((result) => {
+      res.render("index", { GALLERY: result });
+    });
 });
 
 router.post("/upload", upload.single("userfile"), (req, res) => {
@@ -42,7 +43,7 @@ router.post("/upload", upload.single("userfile"), (req, res) => {
     g_filename: filename,
     g_fileoriginalname: originalname,
   };
-  tbl_gallery.create(gallery_insert).then(res.redirect("/"));
+  db.collection("test").create(gallery_insert).then(res.redirect("/"));
 });
 // tbl_gallery.create(gallery_instert);
 // res.json(result);
