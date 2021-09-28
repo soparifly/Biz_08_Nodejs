@@ -3,6 +3,7 @@ const path = require("path");
 const moment = require("moment");
 var router = express.Router();
 const multer = require("multer");
+
 const _storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "..", "public", "images"));
@@ -21,6 +22,7 @@ const upload = multer({ storage: _storage });
  *
  */
 /* GET home page. */
+var db;
 router.get("/", (req, res, next) => {
   db.collection("test")
     .findAll()

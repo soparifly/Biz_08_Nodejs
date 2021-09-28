@@ -7,7 +7,6 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const MongoClient = require("mongodb").MongoClient;
 
-var db;
 MongoClient.connect(
   "mongodb+srv://kimbyulook:12341234@cluster0.jojjs.mongodb.net/Universe?retryWrites=true&w=majority",
   function (에러, client) {
@@ -16,16 +15,17 @@ MongoClient.connect(
     //서버띄우는 코드 여기로 옮기기
     app.listen("8080", function () {
       console.log("listening on 8080");
-      db.collection("test").insertOne(
-        { 이름: "John", _id: 100 },
-        function (에러, 결과) {
-          console.log("저장완료");
-        }
-      );
+      //   db.collection("test").insertOne(
+      //     { 이름: "John", _id: 100 },
+      //     function (에러, 결과) {
+      //       console.log("저장완료");
+      //     }
+      //   );
     });
   }
 );
 
+var apiRouter = require("./routes/apiRouter");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
