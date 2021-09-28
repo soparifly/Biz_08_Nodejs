@@ -1,12 +1,10 @@
 const request = require("request");
-
+const ApiKey = require("./config/ServiceKey.json");
 const url =
   "http://apis.data.go.kr/B090041/openapi/service/AstroEventInfoService";
 //encodeURIComponent()는 URI로 데이터를 전달하기 위해서 문자열을 인코딩
 const queryParams =
-  "?" +
-  encodeURIComponent("ServiceKey") +
-  "=VIgbL54Jr18sQamsUp0hkYlmdtwuLe0dlNvpM68Fz3DwWCZOG%2BqzkOQeLCnqzm0Ui6YqKPVe7wXr2o%2FhyZn6JQ%3D%3D";
+  "?" + encodeURIComponent("ServiceKey") + `=${ApiKey.ServiceKey}`;
 /* Service Key*/
 queryParams +=
   "&" + encodeURIComponent("solYear") + "=" + encodeURIComponent("2017"); /* */
